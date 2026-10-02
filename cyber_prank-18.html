@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Security Scan</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#050805;color:#39ff88;font-family:monospace;min-height:100vh;display:flex;align-items:center;justify-content:center}
+  .box{width:min(92%,520px);border:1px solid #39ff88;padding:22px;background:#071007;box-shadow:0 0 25px #164d27}
+  h1{font-size:20px;text-align:center;letter-spacing:3px}
+  #log{height:300px;overflow:hidden;border-top:1px solid #164d27;border-bottom:1px solid #164d27;padding:12px 0;margin:15px 0}
+  .line{margin:7px 0}
+  .bar{height:12px;border:1px solid #39ff88;margin-top:15px}
+  #fill{height:100%;width:0;background:#39ff88;transition:width .2s}
+  #result{text-align:center;font-size:24px;font-weight:bold;display:none;padding:18px}
+  .small{text-align:center;color:#78b98e;font-size:12px}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>CYBER SECURITY CONSOLE</h1>
+  <div id="log"></div>
+  <div class="bar"><div id="fill"></div></div>
+  <p id="percent" class="small">INITIALIZING... 0%</p>
+  <div id="result">😂 لهكريه مزونه<br><span style="font-size:14px">تم اختراق قلب شخص ما</span></div>
+</div>
+<script>
+const log=document.getElementById("log"), fill=document.getElementById("fill");
+const percent=document.getElementById("percent"), result=document.getElementById("result");
+const lines=[
+"Initializing security console...",
+"Connecting to secure channel...",
+"Scanning connection...",
+"Checking encryption...",
+"Analyzing packets...",
+"Running security simulation...",
+"Verifying access...",
+"Simulation almost complete..."
+];
+let i=0,p=0;
+function addLine(t){let d=document.createElement("div");d.className="line";d.textContent="[+] "+t;log.appendChild(d);log.scrollTop=log.scrollHeight}
+let timer=setInterval(()=>{
+  if(i<lines.length){addLine(lines[i++]);}
+  p=Math.min(100,p+Math.floor(Math.random()*13)+7);
+  fill.style.width=p+"%"; percent.textContent="SIMULATION... "+p+"%";
+  if(p>=100){
+    clearInterval(timer);
+    setTimeout(()=>{
+      log.style.display="none"; fill.parentElement.style.display="none";
+      percent.style.display="none"; result.style.display="block";
+    },700);
+  }
+},650);
+</script>
+</body>
+</html>
